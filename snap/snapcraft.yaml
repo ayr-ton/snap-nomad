@@ -1,17 +1,24 @@
 name: hashicorp-nomad
-version: '0.11.4' 
-summary: Single-line elevator pitch for your amazing snap # 79 char long summary
+version: '0.12.1' 
+summary: Nomad is an easy-to-use, flexible, and performant workload orchestrator
 description: |
-  This is my-snap's description. You have a paragraph or two to tell the
-  most important story about your snap. Keep it under 100 words though,
-  we live in tweetspace and your description wants to look good in the snap
-  store.
+  Nomad enables developers to use declarative infrastructure-as-code for 
+  deploying their applications (jobs). Nomad uses bin packing to efficiently 
+  schedule jobs and optimize for resource utilization. 
+  Nomad is supported on macOS, Windows, and Linux.
 
-grade: devel # must be 'stable' to release into candidate/stable channels
-confinement: devmode # use 'strict' once you have the right plugs and slots
+grade: stable
+confinement: devmode
+base: core18
 
 parts:
-  my-part:
-    # See 'snapcraft plugins'
-    plugin: nil
-  
+  nomad:
+    plugin: dump
+    source: https://releases.hashicorp.com/nomad/$SNAPCRAFT_PROJECT_VERSION/nomad_$SNAPCRAFT_PROJECT_VERSION_linux_amd64.zip
+
+apps:
+  nomad:
+    command: nomad
+    plugs:
+      - network
+      - docker
