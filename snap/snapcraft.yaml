@@ -8,7 +8,7 @@ description: |
   Nomad is supported on macOS, Windows, and Linux.
 
 grade: stable
-confinement: devmode
+confinement: strict
 base: core18
 
 parts:
